@@ -1,0 +1,323 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="cdashModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="agendanotes">
+          <Key>
+            <PropertyRef Name="agendaID" />
+          </Key>
+          <Property Name="agendaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Post_date" Type="date" Nullable="false" />
+          <Property Name="Poster" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="committee_name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="creation_dateOfCommittee" Type="date" Nullable="false" />
+          <Property Name="Post" Type="text" />
+          <Property Name="meetingId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Committee">
+          <Key>
+            <PropertyRef Name="Committee_ID" />
+          </Key>
+          <Property Name="Committee_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Committee_Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Committee_Startdate" Type="date" Nullable="false" />
+          <Property Name="Committee_Enddate" Type="date" Nullable="false" />
+          <Property Name="Committee_Active" Type="varchar" MaxLength="255" />
+          <Property Name="Committee_Faculty" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="numberofpeople" Type="int" />
+        </EntityType>
+        <EntityType Name="committee_Memberlist">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name_ofCommittee" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Uname_ofMember" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="member_joindate" Type="date" Nullable="false" />
+          <Property Name="memeber_endate" Type="date" Nullable="false" />
+          <Property Name="active" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Inbox">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Recipient" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Sender" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Senddate" Type="date" Nullable="false" />
+          <Property Name="Message" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="attachments" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="meetings">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="committee_name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Message_Agenda" Type="text" Nullable="false" />
+          <Property Name="creation_date" Type="date" Nullable="false" />
+          <Property Name="end_date" Type="date" Nullable="false" />
+          <Property Name="active" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="userID" />
+          </Key>
+          <Property Name="userID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FIRSTName" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="LASTName" Type="varchar" MaxLength="35" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="255" />
+          <Property Name="role" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'FK_agendanotes_Committeename' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK_agendanotes_Committeename" />-->
+        <Association Name="FK_agendanotes_meetings">
+          <End Role="meetings" Type="Self.meetings" Multiplicity="1" />
+          <End Role="agendanotes" Type="Self.agendanotes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="meetings">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="agendanotes">
+              <PropertyRef Name="meetingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'FK_agendanotes_users' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK_agendanotes_users" />-->
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'FK_committeeMember_committee' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK_committeeMember_committee" />-->
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'FK_committeeMember_users' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK_committeeMember_users" />-->
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'FK_committeename_committee' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK_committeename_committee" />-->
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'FK_RECIPIENT_EMAIL' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK_RECIPIENT_EMAIL" />-->
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'FK_SENDER_EMAIL' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK_SENDER_EMAIL" />-->
+        <EntityContainer Name="cdashModel1StoreContainer">
+          <EntitySet Name="agendanotes" EntityType="Self.agendanotes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Committee" EntityType="Self.Committee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="committee_Memberlist" EntityType="Self.committee_Memberlist" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Inbox" EntityType="Self.Inbox" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="meetings" EntityType="Self.meetings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_agendanotes_meetings" Association="Self.FK_agendanotes_meetings">
+            <End Role="meetings" EntitySet="meetings" />
+            <End Role="agendanotes" EntitySet="agendanotes" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="cdashModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+ 
+        <EntityType Name="Committee">
+          <Key>
+            <PropertyRef Name="Committee_ID" />
+          </Key>
+          <Property Name="Committee_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Committee_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Committee_Startdate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Committee_Enddate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Committee_Active" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Committee_Faculty" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="numberofpeople" Type="Int32" />
+        </EntityType>
+        <EntityType Name="committee_Memberlist">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name_ofCommittee" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Uname_ofMember" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="member_joindate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="memeber_endate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="active" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Inbox">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Recipient" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Sender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Senddate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="attachments" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="meeting">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="committee_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Message_Agenda" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="creation_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="end_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="active" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="agendanotes" Relationship="cdashModel1.FK_agendanotes_meetings" FromRole="meeting" ToRole="agendanote" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="userID" />
+          </Key>
+          <Property Name="userID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FIRSTName" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LASTName" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="cdashEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Committees" EntityType="Self.Committee" />
+          <EntitySet Name="committee_Memberlist" EntityType="Self.committee_Memberlist" />
+          <EntitySet Name="Inboxes" EntityType="Self.Inbox" />
+          <EntitySet Name="meetings" EntityType="Self.meeting" />
+          <EntitySet Name="users" EntityType="Self.user" />
+          <EntitySet Name="agendanotes" EntityType="cdashModel1.agendanote" />
+          <AssociationSet Name="FK_agendanotes_meetings" Association="cdashModel1.FK_agendanotes_meetings">
+            <End Role="meeting" EntitySet="meetings" />
+            <End Role="agendanote" EntitySet="agendanotes" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="agendanote">
+          <Key>
+            <PropertyRef Name="agendaID" />
+          </Key>
+          <Property Name="agendaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Post_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Poster" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="committee_name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="creation_dateOfCommittee" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Post" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="meetingId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="meeting" Relationship="cdashModel1.FK_agendanotes_meetings" FromRole="agendanote" ToRole="meeting" />
+        </EntityType>
+        <Association Name="FK_agendanotes_meetings">
+          <End Type="cdashModel1.meeting" Role="meeting" Multiplicity="1" />
+          <End Type="cdashModel1.agendanote" Role="agendanote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="meeting">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="agendanote">
+              <PropertyRef Name="meetingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="cdashModel1StoreContainer" CdmEntityContainer="cdashEntities1">
+          <EntitySetMapping Name="Committees">
+            <EntityTypeMapping TypeName="cdashModel1.Committee">
+              <MappingFragment StoreEntitySet="Committee">
+                <ScalarProperty Name="numberofpeople" ColumnName="numberofpeople" />
+                <ScalarProperty Name="Committee_ID" ColumnName="Committee_ID" />
+                <ScalarProperty Name="Committee_Name" ColumnName="Committee_Name" />
+                <ScalarProperty Name="Committee_Startdate" ColumnName="Committee_Startdate" />
+                <ScalarProperty Name="Committee_Enddate" ColumnName="Committee_Enddate" />
+                <ScalarProperty Name="Committee_Active" ColumnName="Committee_Active" />
+                <ScalarProperty Name="Committee_Faculty" ColumnName="Committee_Faculty" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="committee_Memberlist">
+            <EntityTypeMapping TypeName="cdashModel1.committee_Memberlist">
+              <MappingFragment StoreEntitySet="committee_Memberlist">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="name_ofCommittee" ColumnName="name_ofCommittee" />
+                <ScalarProperty Name="Uname_ofMember" ColumnName="Uname_ofMember" />
+                <ScalarProperty Name="member_joindate" ColumnName="member_joindate" />
+                <ScalarProperty Name="memeber_endate" ColumnName="memeber_endate" />
+                <ScalarProperty Name="active" ColumnName="active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Inboxes">
+            <EntityTypeMapping TypeName="cdashModel1.Inbox">
+              <MappingFragment StoreEntitySet="Inbox">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Recipient" ColumnName="Recipient" />
+                <ScalarProperty Name="Sender" ColumnName="Sender" />
+                <ScalarProperty Name="Senddate" ColumnName="Senddate" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="attachments" ColumnName="attachments" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="meetings">
+            <EntityTypeMapping TypeName="cdashModel1.meeting">
+              <MappingFragment StoreEntitySet="meetings">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="committee_name" ColumnName="committee_name" />
+                <ScalarProperty Name="Message_Agenda" ColumnName="Message_Agenda" />
+                <ScalarProperty Name="creation_date" ColumnName="creation_date" />
+                <ScalarProperty Name="end_date" ColumnName="end_date" />
+                <ScalarProperty Name="active" ColumnName="active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="cdashModel1.user">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="userID" ColumnName="userID" />
+                <ScalarProperty Name="FIRSTName" ColumnName="FIRSTName" />
+                <ScalarProperty Name="LASTName" ColumnName="LASTName" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="role" ColumnName="role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="agendanotes">
+            <EntityTypeMapping TypeName="cdashModel1.agendanote">
+              <MappingFragment StoreEntitySet="agendanotes">
+                <ScalarProperty Name="meetingId" ColumnName="meetingId" />
+                <ScalarProperty Name="Post" ColumnName="Post" />
+                <ScalarProperty Name="creation_dateOfCommittee" ColumnName="creation_dateOfCommittee" />
+                <ScalarProperty Name="committee_name" ColumnName="committee_name" />
+                <ScalarProperty Name="Poster" ColumnName="Poster" />
+                <ScalarProperty Name="Post_date" ColumnName="Post_date" />
+                <ScalarProperty Name="agendaID" ColumnName="agendaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

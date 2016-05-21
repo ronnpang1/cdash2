@@ -1,0 +1,33 @@
+﻿@model Inspinia_MVC5.Models.agendanote
+
+
+            @using (Html.BeginForm("postnotes", "UIElements", FormMethod.Post))
+            {
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true)
+
+        <div class="ibox-content">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Post, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.Post, new { cols = 50, @rows = 3 })
+                    @Html.ValidationMessageFor(model => model.Post)
+                </div>
+                <button type="submit" id="postbtn" class="btn btn-success">Post</button>
+            </div>
+
+
+
+            </div>
+        </div>
+}
+
+        
+
+ 
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<sitemanifest>
+  <IisApp path="C:\Users\HENG\Desktop\products-WB0R5L90S (1)\MVC5_Full_Version\Inspinia_MVC5\obj\Release\Package\PackageTmp" />
+  <setAcl path="C:\Users\HENG\Desktop\products-WB0R5L90S (1)\MVC5_Full_Version\Inspinia_MVC5\obj\Release\Package\PackageTmp" setAclResourceType="Directory" />
+  <setAcl path="C:\Users\HENG\Desktop\products-WB0R5L90S (1)\MVC5_Full_Version\Inspinia_MVC5\obj\Release\Package\PackageTmp" setAclUser="anonymousAuthenticationUser" setAclResourceType="Directory" />
+</sitemanifest>

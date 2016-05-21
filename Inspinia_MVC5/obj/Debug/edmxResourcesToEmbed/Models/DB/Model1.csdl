@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="cdashModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="SYSUser">
+    <Key>
+      <PropertyRef Name="SYSUserID" />
+    </Key>
+    <Property Name="SYSUserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LoginName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PasswordEncryptedText" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="RowCreatedSYSUserID" Type="Int32" Nullable="false" />
+    <Property Name="RowCreatedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="RowModifiedSYSUserID" Type="Int32" Nullable="false" />
+    <Property Name="RowModifiedDateTime" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityContainer Name="cdashEntities2" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="SYSUsers" EntityType="Self.SYSUser" />
+  </EntityContainer>
+</Schema>

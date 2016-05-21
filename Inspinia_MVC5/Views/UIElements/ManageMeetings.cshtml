@@ -1,0 +1,92 @@
+﻿@model IEnumerable<Inspinia_MVC5.Models.ViewModel.viewmeeting>
+
+@{
+    ViewBag.Title = "ManageMeetings";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>ManageMeetings</h2>
+        <ol class="breadcrumb">
+            <li class="active">
+                <strong>viewmeeting</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>List of viewmeeting</h5>
+					<div class="ibox-tools">
+						@Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary btn-xs"})
+					</div>
+                </div>
+                <div class="ibox-content">
+
+<table class="table table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.committee_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Message_Agenda)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.meetingid)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.meeting_date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.created_date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.active)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.committee_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Message_Agenda)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.meetingid)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.meeting_date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.created_date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.active)
+        </td>
+        <td>
+			@Html.ActionLink("UIElements", "AgendaAccess", "UIElements", new { committeeName = item.committee_name, id=item.meetingid}, new { @class = "btn btn-primary btn-sm"})
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }, new { @class = "btn btn-white btn-sm"})
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID }, new { @class = "btn btn-white btn-sm"})
+        </td>
+    </tr>
+}
+
+</table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+
+

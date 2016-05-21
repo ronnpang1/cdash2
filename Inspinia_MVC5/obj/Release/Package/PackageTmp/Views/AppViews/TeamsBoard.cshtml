@@ -1,0 +1,228 @@
+﻿
+@{
+    ViewBag.Title = "TeamsBoard";
+}
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
+<script type="text/javascript">
+
+    $(document).ready(function ()
+
+    {
+
+        $('#committee_create').on('click',function ()
+
+
+        {
+
+            var committee_name = $("#committee_name").val();
+            alert(committee_name);
+            var html = '<div class="col-lg-4">\
+            <div class="ibox">\
+                <div class="ibox-title">\
+                    <span class="label label-primary pull-right">NEW</span>\
+                    <h5>IT-01 - ' + committee_name + '</h5>\
+                </div>\
+                <div class="ibox-content">\
+                    <div class="team-members">\
+                    </div>\
+                    <h4>Info regarding committee</h4>\
+                    <p>\
+                        Commitee Info\
+                    </p>\
+                    <div>\
+                        <span>Status of current committee:</span>\
+                        ACTIVE\
+                    </div>\
+                    <div class="row  m-t-sm">\
+                        <div class="col-sm-4">\
+                            <div class="font-bold">MEMBERS</div>\
+                            12\
+                        </div>\
+                        <div class="col-sm-4">\
+                            <div class="font-bold">PLACEHOLDER</div>\
+                            PLACEHOLDER\
+                        </div>\
+                        <div class="col-sm-4 text-right">\
+                            <div class="font-bold">BUDGET</div>\
+                            $913 <i class="fa fa-level-up text-navy"></i>\
+                        </div>\
+                    </div>\
+                </div>\
+            </div>\
+        </div>'
+
+            $('#committee_row').append(html);
+
+        }
+        
+
+        
+        )
+
+
+
+    }
+    
+    
+    )
+
+
+
+
+</script>
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Teams board</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="index.html">Home</a>
+            </li>
+            <li>
+                <a>App views</a>
+            </li>
+            <li class="active">
+                <strong>Teams board</strong>
+            </li>
+        </ol>
+    </div>
+
+
+    <div class="col-lg-2">
+
+    </div>
+</div>
+</br>
+
+<button class="btn btn-primary btn-circle btn-lg" id ="create_committee_button"type="button" data-toggle="modal" data-target="#myModal">
+    <i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+
+<div class="modal inmodal" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content animated bounceInRight">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <i class="fa fa-laptop modal-icon"></i>
+                <h4 class="modal-title">Create a New Committee</h4>
+                <small class="font-bold">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</small>
+            </div>
+            <div class="modal-body">
+                <p>
+                    <strong>Lorem Ipsum is simply dummy</strong> text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown
+                    printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,
+                    remaining essentially unchanged.
+                </p>
+                <div class="form-group" ><label>Committee Name</label>
+                <input type="text" id="committee_name" placeholder="Enter Committee Name" class="form-control"></div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="committee_create">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row" id="committee_row">
+        <div class="col-lg-4">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <span class="label label-primary pull-right">NEW</span>
+                    <h5>IT-01 - Committee 1</h5>
+                </div>
+                <div class="ibox-content">
+                    <div class="team-members">
+                        <a href="#"><img alt="member" class="img-circle" src="~/Images/a1.jpg"></a>
+                        <a href="#"><img alt="member" class="img-circle" src="~/Images/a2.jpg"></a>
+                        <a href="#"><img alt="member" class="img-circle" src="~/Images/a3.jpg"></a>
+                        <a href="#"><img alt="member" class="img-circle" src="~/Images/a5.jpg"></a>
+                        <a href="#"><img alt="member" class="img-circle" src="~/Images/a6.jpg"></a>
+                    </div>
+                    <h4>Info regarding committee</h4>
+                    <p>
+                        Commitee Info
+                    </p>
+                    <div>
+                        <span>Status of current committee:</span>
+                        ACTIVE
+
+                    </div>
+                    <div class="row  m-t-sm">
+                        <div class="col-sm-4">
+                            <div class="font-bold">MEMBERS</div>
+                            12
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="font-bold">PLACEHOLDER</div>
+                            PLACEHOLDER
+                        </div>
+                        <div class="col-sm-4 text-right">
+                            <div class="font-bold">BUDGET</div>
+                            $913 <i class="fa fa-level-up text-navy"></i>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+        <div class="col-lg-4">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <span class="label label-primary pull-right">NEW</span>
+                    <h5>IT-01 - Committee 2</h5>
+                </div>
+                <div class="ibox-content">
+                    <div class="team-members">
+                        <a href="#"><img alt="member" class="img-circle" src="~/Images/a1.jpg"></a>
+                        <a href="#"><img alt="member" class="img-circle" src="~/Images/a2.jpg"></a>
+                        <a href="#"><img alt="member" class="img-circle" src="~/Images/a3.jpg"></a>
+                        <a href="#"><img alt="member" class="img-circle" src="~/Images/a5.jpg"></a>
+                        <a href="#"><img alt="member" class="img-circle" src="~/Images/a6.jpg"></a>
+                    </div>
+                    <h4>Info regarding committee</h4>
+                    <p>
+                        Commitee Info
+                    </p>
+                    <div>
+                        <span>Status of current committee:</span>
+                        ACTIVE
+
+                    </div>
+                    <div class="row  m-t-sm">
+                        <div class="col-sm-4">
+                            <div class="font-bold">MEMBERS</div>
+                            12
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="font-bold">PLACEHOLDER</div>
+                            PLACEHOLDER
+                        </div>
+                        <div class="col-sm-4 text-right">
+                            <div class="font-bold">BUDGET</div>
+                            $913 <i class="fa fa-level-up text-navy"></i>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</div>
+

@@ -1,0 +1,102 @@
+﻿<nav class="navbar-default navbar-static-side" role="navigation">
+    <div class="sidebar-collapse">
+        <ul class="nav" id="side-menu">
+            <li class="nav-header">
+                <div class="dropdown profile-element">
+                    <span>
+                        <img alt="image" class="img-circle" src="~/Images/profile_small.jpg" />
+                    </span>
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                        <span class="clear">
+                            <span class="block m-t-xs">
+                                <strong class="font-bold">David Williams</strong>
+                            </span> <span class="text-muted text-xs block">Art Director <b class="caret"></b></span>
+                        </span>
+                    </a>
+                    <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                        <li><a href="@Url.Action("Profile", "AppViews")">Profile</a></li>
+                        <li><a href="@Url.Action("Contacts", "AppViews")">Contacts</a></li>
+                        <li><a href="@Url.Action("Inbox", "Mailbox")">Mailbox</a></li>
+                        <li class="divider"></li>
+                        <li><a href="@Url.Action("Login", "Pages")">Logout</a></li>
+                    </ul>
+                </div>
+                <div class="logo-element">
+                    IN+
+                </div>
+            </li>
+            
+            
+           
+            <li class="@Html.IsSelected(controller: "Mailbox")">
+                <a href="#"><i class="fa fa-envelope"></i> <span class="nav-label" data-i18n="nav.mailbox">Mailbox </span><span class="label label-warning pull-right">16/24</span></a>
+                <ul class="nav nav-second-level collapse @Html.IsSelected(controller: "Mailbox", cssClass: "in")">
+                    <li class="@Html.IsSelected(action: "Inbox")"><a href="@Url.Action("Inbox", "Mailbox")">Inbox</a></li>
+                    <li class="@Html.IsSelected(action: "EmailView")"><a href="@Url.Action("EmailView", "Mailbox")">Email view</a></li>
+                    <li class="@Html.IsSelected(action: "ComposeEmail")"><a href="@Url.Action("ComposeEmail", "Mailbox")">Compose email</a></li>
+                    <li class="@Html.IsSelected(action: "EmailTemplates")"><a href="@Url.Action("EmailTemplates", "Mailbox")">Email templates</a></li>
+                </ul>
+            </li>
+
+            <li class="@Html.IsSelected(controller: "UIElements")">
+
+                <a href="#"><i class="fa fa-flask"></i> 
+                <span class="nav-label" data-i18n="nav.uielements">Committee</span><span class="fa arrow">
+                    </span>
+                </a>
+
+
+        <ul class="nav nav-second-level collapse @Html.IsSelected(controller:"Notification",cssClass:"in")">
+
+            <li class="@Html.IsSelected(action: "NotificationsTooltips")">
+                <a href="@Url.Action("TeamsBoard", "AppViews")">Create Committees</a>
+                </li>
+
+
+<li class="@Html.IsSelected(action: "NotificationsTooltips")">
+                <a href="@Url.Action("NotificationsTooltips", "UIElements")">Committees<span class="fa arrow"></span></a>
+            <li class="@Html.IsSelected(action: "NotificationsTooltips")">
+                <ul class="nav nav-second-level collapse @Html.IsSelected(controller:"Notification",cssClass:"in")">
+                    <li class="@Html.IsSelected(action: "NotificationsTooltips")">
+                        <a href="@Url.Action("NotificationsTooltips", "UIElements")">Committee 1<span class="fa arrow"></span></a>
+
+                        <ul class="nav nav-second-level collapse @Html.IsSelected(controller:"Notification",cssClass:"in")">
+
+                            <li class="@Html.IsSelected(action: "NotificationsTooltips")">
+                                <a href="@Url.Action("Clients", "AppViews")">Add members</a>
+                            </li>
+                            <li class="@Html.IsSelected(action: "NotificationsTooltips")">
+                                <a href="@Url.Action("NotificationsTooltips", "UIElements")">Agenda</a>
+                            </li>
+
+
+                        </ul>
+
+
+                </ul>
+
+
+            </li>
+                </ul>
+            </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </ul>
+    </div>
+</nav>

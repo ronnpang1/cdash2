@@ -1,0 +1,123 @@
+﻿@model Inspinia_MVC5.Models.SYSUser
+
+@{
+    ViewBag.Title = "test1";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>test1</h2>
+        <ol class="breadcrumb">
+            <li>
+                @Html.ActionLink("List", "Index")
+            </li>
+            <li class="active">
+                <strong>test1</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+			@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary"})
+        </div>
+    </div>
+</div>
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>test1 SYSUser</h5>
+                </div>
+                <div class="ibox-content">
+
+				@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.LoginName, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.LoginName)
+                @Html.ValidationMessageFor(model => model.LoginName)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PasswordEncryptedText, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PasswordEncryptedText)
+                @Html.ValidationMessageFor(model => model.PasswordEncryptedText)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.username, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.username)
+                @Html.ValidationMessageFor(model => model.username)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.role, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.role)
+                @Html.ValidationMessageFor(model => model.role)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.RowCreatedSYSUserID, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.RowCreatedSYSUserID)
+                @Html.ValidationMessageFor(model => model.RowCreatedSYSUserID)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.RowCreatedDateTime, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.RowCreatedDateTime)
+                @Html.ValidationMessageFor(model => model.RowCreatedDateTime)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.RowModifiedSYSUserID, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.RowModifiedSYSUserID)
+                @Html.ValidationMessageFor(model => model.RowModifiedSYSUserID)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.RowModifiedDateTime, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.RowModifiedDateTime)
+                @Html.ValidationMessageFor(model => model.RowModifiedDateTime)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-primary" />
+				@Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-white"})
+            </div>
+        </div>
+    </div>
+}
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+ 
