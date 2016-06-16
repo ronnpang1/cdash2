@@ -1,0 +1,296 @@
+﻿@model Inspinia_MVC5.Models.ViewModel.workloadviewmodel
+
+@section Styles {
+    @Styles.Render("~/plugins/morrisStyles")
+@Styles.Render("~/plugins/c3Styles")
+}
+@section Scripts {
+    @Scripts.Render("~/plugins/chartjs")
+    @Scripts.Render("~/plugins/morris")
+    @Scripts.Render("~/plugins/d3")
+    @Scripts.Render("~/plugins/c3")
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var data = "";
+
+
+            $.ajax(
+ {
+     type: "POST", //HTTP POST Method
+     url: "@Url.Action("pubdetails_piegraph")", // Controller/View
+                type: "post",
+            cache:false,
+            error: function (response) {
+                alert(response.responseText);
+            },
+            success: function (response, createdata) {
+                obj = jQuery.parseJSON(response);
+                console.log(obj);
+                
+                c3.generate({
+                    bindto: '#pie',
+                    data: {
+                        columns: [
+                            ['Referenced Journals', obj.ref_journals],
+                            ['Accredited Articles', obj.acc_journalarticles],
+                            ['Conference Proceedings', obj.ref_conf_proceedings],
+                            ['Academic Books', obj.Academic_books_monographs],
+                            ['Edited Books', obj.edited_books],
+                            ['Chapters in books', obj.chaptors_inbooks],
+                            ['Pub Reviws', obj.published_reviews],
+                            ['Textbooks', obj.textbooks],
+                            ['Other Pubs', obj.other_pub],
+                            ['Non-Referenced Articles', obj.nonref_journalarticles],
+                        ],
+                        colors: {
+                            data1: '#1ab394',
+                            data2: '#BABABA'
+                        },
+                        type: 'pie'
+                    }
+                });
+            }
+
+        });
+
+
+            //datagraphbutton
+            $(".btn-success").click(function ()
+            
+            {
+                $("#morris-bar-chart").load(location.href + " #morris-bar-chart>*", "");
+
+                data = ($(this).val());
+
+
+                $('.btn-success').attr('disabled', 'disabled');
+
+            $.ajax(
+  {
+      type: "POST", //HTTP POST Method
+      url: "@Url.Action("getdata")", // Controller/View
+      type: "post",
+      cache:false,
+      data: { 'datafrom': data },
+                error: function (response) {
+                    alert(response.responseText);
+                },
+                success: function (response, createdata) {
+                    obj = jQuery.parseJSON(response);
+                    year = obj.year;
+                    avg = obj.avg;
+                    entries = obj.entries;
+                    console.log(obj.entries);
+                    console.log(obj.avg);
+
+                    Morris.Bar({
+                        element: 'morris-bar-chart',
+                        data: [{ y: obj.Year, a: obj.entries, b: obj.avg },
+                        ],
+                        xkey: 'y',
+                        ykeys: ['a', 'b'],
+                        labels: ['Total References by professor', 'Average'],
+                        hideHover: 'auto',
+                        resize: true,
+                        barColors: ['#1ab394', '#cacaca'],
+                    });
+                    $("#morris-bar-chart").fadeIn(400);
+
+                    $('.btn-success').attr('disabled', false);
+
+                }
+
+            });
+
+
+
+            });
+
+           
+
+                $.ajax(
+       {
+           type: "POST", //HTTP POST Method
+           url: "@Url.Action("getbardata")", // Controller/View
+                    dataType: 'json',
+                contentType: 'application/json',
+                error: function (response) {
+                    alert(response.responseText);
+                },
+                success: function (response, createdata) {
+                    obj = jQuery.parseJSON(response);
+                    year = obj.year;
+                    avg = obj.avg;
+                    entries = obj.entries;
+                    console.log(obj.entries);
+                    Morris.Bar({
+                        element: 'morris-bar-chart',
+                        data: [{ y: obj.Year, a: obj.entries, b: obj.avg },
+                        ],
+                        xkey: 'y',
+                        ykeys: ['a', 'b'],
+                        labels: ['Total References by professor', 'Average'],
+                        hideHover: 'auto',
+                        resize: true,
+                        barColors: ['#1ab394', '#cacaca'],
+                    });
+
+                    //$("input.btn-success").attr("enabled", true);
+
+                }
+
+       });
+            
+               
+
+           
+
+         
+
+        });
+    </script>
+}
+
+
+    
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>Details workloadviewmodel</h5>
+            </div>
+
+
+                    <div class="col-lg-4">
+
+
+                        <dl class="dl-horizontal">
+                            <dt>
+                                @Html.DisplayNameFor(model => model.username)
+
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.username)
+                            </dd>
+                            
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.academic_year)
+                                </dt>
+
+                                <dd>
+                                    <p style="width: 60%;" class="progress-bar"> @Html.DisplayFor(model => model.academic_year)</p>
+                                </dd>
+                            
+                            <dt>
+
+                                @Html.DisplayNameFor(model => model.ref_journals)
+                            </dt>
+
+                            <dd>
+                                <p style="width: 100%;" class="progress-bar"> @Html.DisplayFor(model => model.ref_journals)</p>
+                                <p style="width: 30%;" class="progress-bar progress-bar-danger">Avg: 2</p>
+</dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.acc_journalarticles)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.acc_journalarticles)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.ref_conf_proceedings)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.ref_conf_proceedings)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Academic_books_monographs)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Academic_books_monographs)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.edited_books)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.edited_books)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.chaptors_inbooks)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.chaptors_inbooks)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.published_reviews)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.published_reviews)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.textbooks)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.textbooks)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.other_pub)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.other_pub)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.nonref_journalarticles)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.nonref_journalarticles)
+                            </dd>
+
+                        </dl>
+                    </div>
+                <div class="col-lg-4">
+                    @Html.Action("getcommittee_list", "Workload", new { username = Model.username })
+                    </div>
+                <div class="col-lg-4">
+                    <div id="pie"></div>
+                </div>
+                @Html.Action("Getstats", "Workload", new { username = Model.username })
+
+
+
+            </div>
+       
+
+    
+
+
+          
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -32,6 +32,46 @@ namespace Inspinia_MVC5
          
         );
 
+            routes.MapRoute(
+           name: "Course",
+           url: "{Tables}/{EditCourse}/{Coursename}/{Coursenumber}",
+           defaults: new
+           {
+               controller = "Tables",
+               action = "EditCourse",
+               Coursename = UrlParameter.Optional,
+               Coursenumber = UrlParameter.Optional
+           }
+
+       );
+
+
+            routes.MapRoute(
+          "Workload",
+          "{Workload}/{Details}/{username}",
+            new
+            {
+                controller = "Workload",
+                action = "Details",
+                username = UrlParameter.Optional
+
+            }
+
+       );
+
+            routes.MapRoute(
+         name: "remove",
+         url: "{UIElements}/{unassign}/{email}",
+         defaults: new
+         {
+             controller = "UIElements",
+             action = "unassign",
+             email = UrlParameter.Optional,
+          
+         }
+
+     );
+
         }
 
     }

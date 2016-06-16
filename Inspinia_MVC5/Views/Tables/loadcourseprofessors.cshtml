@@ -1,0 +1,193 @@
+﻿@model IEnumerable<Inspinia_MVC5.Models.ViewModel.loadcourseprofessors>
+@section Scripts {
+    @Scripts.Render("~/plugins/iCheck")
+   
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#mytable input[type=radio]').iCheck('disable')
+
+            var array = [];
+            $("#btnEdit").click(function () {
+        
+                $('#mytable input[type=radio]').iCheck('enable')
+
+
+
+            });
+
+
+            $("#btnSave").click(function () {
+                updatefunction();
+                $.ajax(
+                {
+                    type: "POST", //HTTP POST Method
+                    url: "@Url.Action("EditMembers2")", // Controller/View
+                    dataType: 'json',
+                    data: JSON.stringify(array),
+                    contentType: 'application/json',
+                    error: function (response) {
+                        alert(response.responseText);
+                    },
+                    success: function (response) {
+                        location.reload();
+
+                    }
+
+                });
+
+            });
+
+            var updatefunction = function () {
+                $("#mytable tr:not(:has(th))").each(function (index) {
+                    var test = "test";
+                    var $tr = $(this).closest('tr');
+                    var name = ($tr.find('td:nth-child(1)').text()).toString().trim();
+                    var Lname = ($tr.find('td:nth-child(2)').text()).toString().trim();
+                    var role = ($tr.find('td:nth-child(3)').text()).toString().trim();
+                    var email = ($tr.find('td:nth-child(4)').text()).toString().trim();
+
+                    var assigned = $tr.find(':checked').val();
+
+                    if (assigned == "assigned")
+                        array.push({"Name": name,"Lname": Lname,"Role": role, "email": email,"Assigned":true});
+                    else
+                        array.push({"Name": name, "Lname": Lname, "Role": role, "email": email, "Assigned":false});
+
+
+                    //alert(email + assigned);
+                    //for (var i = 0; i < array.length; i++) {
+                    //    console.log(array.length + " " + array[i]["email"].length
+                    //        + " " + array[i]["Name"]
+                    //         + " " + array[i]["Assigned"]);
+                    //}
+
+                });
+
+            }
+            $('.i-checks').iCheck({
+                checkboxClass: 'icheckbox_square-green',
+                radioClass: 'iradio_square-green',
+            });
+
+        });
+</script>
+
+
+
+
+<div class="ibox-content">
+
+    <div class="ibox-title">
+        <h5>List of Proffessors</h5>
+        <div class="ibox-tools">
+            <button class="btn btn-primary btn-xs" id="btnEdit">Edit </button>
+
+            <button class="btn btn-primary btn-xs" id="btnSave">Save </button>
+
+        </div>
+    </div>
+
+
+
+    @using (Html.BeginForm())
+    {
+        <table class="table table-striped" id='mytable'>
+
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Lname)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Role)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Assigned)
+
+                </th>
+
+                <th>
+                    Unassigned
+
+                </th>
+
+            </tr>
+            <tbody>
+                @foreach (var item in Model)
+                {
+
+
+                    <tr>
+                        <td>
+
+                            @item.Name
+                        </td>
+                        <td>
+                            @item.Lname
+
+                        </td>
+                        <td>
+                            @item.Role
+                        </td>
+                        <td class="tableids" id=@item.email>
+
+                            @item.email
+
+                        </td>
+
+                        @if (item.Assigned == true)
+                        {
+                            <td>
+                                <input class="radio i-checks" type="radio" value="assigned" name=@item.email checked>  Assigned
+                            </td>
+
+                                            <td>
+                                                <input class="radio i-checks" type="radio" value="unassigned" name=@item.email> <i></i> Unassigned
+                                            </td>
+                        }
+
+                        else
+                        {
+
+
+                            <td>
+                                <input class="radio i-checks" type="radio" value="assigned" name=@item.email> <i></i> Assigned
+                            </td>
+
+                                            <td>
+                                                <input class="radio i-checks" type="radio" value="unassigned" name=@item.email checked> <i></i> Unassigned
+                                            </td>
+
+
+
+                        }
+
+
+
+                        <td>
+                            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }, new { @class = "btn btn-primary btn-sm" })
+                            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }, new { @class = "btn btn-white btn-sm" })
+                        </td>
+                    </tr>
+
+
+
+
+                }
+            </tbody>
+        </table>
+
+    }
+
+</div>
+
+
+
+            
+ 

@@ -1,6 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <parameters>
-  <parameter name="ScaffoldingContext-Web.config Connection String" description="ScaffoldingContext Connection String used in web.config by the application to access the database." defaultValue="Data Source=(localdb)\v11.0; Initial Catalog=ScaffoldingContext-20141212125339; Integrated Security=True; MultipleActiveResultSets=True; AttachDbFilename=|DataDirectory|ScaffoldingContext-20141212125339.mdf" tags="SqlConnectionString">
-    <parameterEntry kind="XmlFile" scope="C:\\Users\\HENG\\Desktop\\products-WB0R5L90S\ \(1\)\\MVC5_Full_Version\\Inspinia_MVC5\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='ScaffoldingContext']/@connectionString" />
+  <parameter name="cdashEntities1-Web.config Connection String" description="cdashEntities1 Connection String used in web.config by the application to access the database." defaultValue="metadata=res://*/Models.ModelX.csdl|res://*/Models.ModelX.ssdl|res://*/Models.ModelX.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=tcp:cdash.database.windows.net;initial catalog=cdash;persist security info=True;user id=cdash;password=Pydna2016;multipleactiveresultsets=True;trustservercertificate=True;application name=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\HENG\\Downloads\\CDASH-master\\CDASH-master\\Inspinia_MVC5\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='cdashEntities1']/@connectionString" />
+  </parameter>
+  <parameter name="Inspinia_MVC5.Models.cdashEntities-Web.config Connection String" description="Inspinia_MVC5.Models.cdashEntities Connection String used in web.config by the application to access the database." defaultValue="Inspinia_MVC5.Models.cdashEntities_ConnectionString" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\HENG\\Downloads\\CDASH-master\\CDASH-master\\Inspinia_MVC5\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='Inspinia_MVC5.Models.cdashEntities']/@connectionString" />
+  </parameter>
+  <parameter name="Inspinia_MVC5.Models.CDASH_USER-Web.config Connection String" description="Inspinia_MVC5.Models.CDASH_USER Connection String used in web.config by the application to access the database." defaultValue="Inspinia_MVC5.Models.CDASH_USER_ConnectionString" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\HENG\\Downloads\\CDASH-master\\CDASH-master\\Inspinia_MVC5\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='Inspinia_MVC5.Models.CDASH_USER']/@connectionString" />
+  </parameter>
+  <parameter name="Inspinia_MVC5.Models.ScaffoldingContext-Web.config Connection String" description="Inspinia_MVC5.Models.ScaffoldingContext Connection String used in web.config by the application to access the database." defaultValue="Inspinia_MVC5.Models.ScaffoldingContext_ConnectionString" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\HENG\\Downloads\\CDASH-master\\CDASH-master\\Inspinia_MVC5\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='Inspinia_MVC5.Models.ScaffoldingContext']/@connectionString" />
+  </parameter>
+  <parameter name="Inspinia_MVC5.Models.UserEntity-Web.config Connection String" description="Inspinia_MVC5.Models.UserEntity Connection String used in web.config by the application to access the database." defaultValue="Inspinia_MVC5.Models.UserEntity_ConnectionString" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\HENG\\Downloads\\CDASH-master\\CDASH-master\\Inspinia_MVC5\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='Inspinia_MVC5.Models.UserEntity']/@connectionString" />
   </parameter>
 </parameters>

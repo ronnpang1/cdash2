@@ -24,11 +24,7 @@ namespace Inspinia_MVC5.Controllers
             return View();
         }
 
-        public ActionResult Orders()
-        {
-            return View();
-        }
-
+      
         public ActionResult ProductDetail()
         {
             return View();

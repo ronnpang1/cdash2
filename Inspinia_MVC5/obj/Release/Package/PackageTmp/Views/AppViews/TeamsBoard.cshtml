@@ -1,20 +1,17 @@
-﻿
+﻿@model IEnumerable<Inspinia_MVC5.Models.Committee_Details>
+
 @{
     ViewBag.Title = "TeamsBoard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 
 <script type="text/javascript">
 
-    $(document).ready(function ()
+    $(document).ready(function () {
 
-    {
-
-        $('#committee_create').on('click',function ()
-
-
-        {
+        $('#committee_create').on('click', function () {
 
             var committee_name = $("#committee_name").val();
             alert(committee_name);
@@ -55,49 +52,44 @@
 
             $('#committee_row').append(html);
 
-        }
-        
 
-        
+
+            $.ajax(
+           {
+               type: "POST", //HTTP POST Method
+               url: "/AppViews/addCommittee", // Controller/View
+               data: { //Passing data
+                   Committee_Name: committee_name
+               },
+               success: function (data) {
+                   alert("Data posted");
+               }
+
+           });
+
+        }
+
+
+
         )
+
+
+        $('#SubmitName').click(function () {
+            var url = "/Home/WelcomeMsg";
+            var name = $('#Name').val();
+            $.get(url, { input: name }, function (data) {
+                $("#rData").html(data);
+            });
+        })
 
 
 
     }
-    
-    
+
+
     )
 
-
-
-
 </script>
-
-<div class="row wrapper border-bottom white-bg page-heading">
-    <div class="col-lg-10">
-        <h2>Teams board</h2>
-        <ol class="breadcrumb">
-            <li>
-                <a href="index.html">Home</a>
-            </li>
-            <li>
-                <a>App views</a>
-            </li>
-            <li class="active">
-                <strong>Teams board</strong>
-            </li>
-        </ol>
-    </div>
-
-
-    <div class="col-lg-2">
-
-    </div>
-</div>
-</br>
-
-<button class="btn btn-primary btn-circle btn-lg" id ="create_committee_button"type="button" data-toggle="modal" data-target="#myModal">
-    <i class="fa fa-plus-circle" aria-hidden="true"></i></button>
 
 <div class="modal inmodal" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
@@ -114,8 +106,10 @@
                     printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,
                     remaining essentially unchanged.
                 </p>
-                <div class="form-group" ><label>Committee Name</label>
-                <input type="text" id="committee_name" placeholder="Enter Committee Name" class="form-control"></div>
+                <div class="form-group">
+                    <label>Committee Name</label>
+                    <input type="text" id="committee_name" placeholder="Enter Committee Name" class="form-control">
+                </div>
 
             </div>
             <div class="modal-footer">
@@ -125,104 +119,82 @@
         </div>
     </div>
 </div>
+<div class="row wrapper border-bottom white-bg page-heading">
 
-<div class="wrapper wrapper-content animated fadeInRight">
-    <div class="row" id="committee_row">
-        <div class="col-lg-4">
-            <div class="ibox">
-                <div class="ibox-title">
-                    <span class="label label-primary pull-right">NEW</span>
-                    <h5>IT-01 - Committee 1</h5>
-                </div>
-                <div class="ibox-content">
-                    <div class="team-members">
-                        <a href="#"><img alt="member" class="img-circle" src="~/Images/a1.jpg"></a>
-                        <a href="#"><img alt="member" class="img-circle" src="~/Images/a2.jpg"></a>
-                        <a href="#"><img alt="member" class="img-circle" src="~/Images/a3.jpg"></a>
-                        <a href="#"><img alt="member" class="img-circle" src="~/Images/a5.jpg"></a>
-                        <a href="#"><img alt="member" class="img-circle" src="~/Images/a6.jpg"></a>
-                    </div>
-                    <h4>Info regarding committee</h4>
-                    <p>
-                        Commitee Info
-                    </p>
-                    <div>
-                        <span>Status of current committee:</span>
-                        ACTIVE
-
-                    </div>
-                    <div class="row  m-t-sm">
-                        <div class="col-sm-4">
-                            <div class="font-bold">MEMBERS</div>
-                            12
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="font-bold">PLACEHOLDER</div>
-                            PLACEHOLDER
-                        </div>
-                        <div class="col-sm-4 text-right">
-                            <div class="font-bold">BUDGET</div>
-                            $913 <i class="fa fa-level-up text-navy"></i>
-                        </div>
-                    </div>
-
-                </div>
-
-
-            </div>
-
-
-        </div>
-
-        <div class="col-lg-4">
-            <div class="ibox">
-                <div class="ibox-title">
-                    <span class="label label-primary pull-right">NEW</span>
-                    <h5>IT-01 - Committee 2</h5>
-                </div>
-                <div class="ibox-content">
-                    <div class="team-members">
-                        <a href="#"><img alt="member" class="img-circle" src="~/Images/a1.jpg"></a>
-                        <a href="#"><img alt="member" class="img-circle" src="~/Images/a2.jpg"></a>
-                        <a href="#"><img alt="member" class="img-circle" src="~/Images/a3.jpg"></a>
-                        <a href="#"><img alt="member" class="img-circle" src="~/Images/a5.jpg"></a>
-                        <a href="#"><img alt="member" class="img-circle" src="~/Images/a6.jpg"></a>
-                    </div>
-                    <h4>Info regarding committee</h4>
-                    <p>
-                        Commitee Info
-                    </p>
-                    <div>
-                        <span>Status of current committee:</span>
-                        ACTIVE
-
-                    </div>
-                    <div class="row  m-t-sm">
-                        <div class="col-sm-4">
-                            <div class="font-bold">MEMBERS</div>
-                            12
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="font-bold">PLACEHOLDER</div>
-                            PLACEHOLDER
-                        </div>
-                        <div class="col-sm-4 text-right">
-                            <div class="font-bold">BUDGET</div>
-                            $913 <i class="fa fa-level-up text-navy"></i>
-                        </div>
-                    </div>
-
-                </div>
-
-
-            </div>
-
-
-        </div>
-
-
+    <div class="col-sm-4">
+        <h2>TeamsBoard</h2>
+        <ol class="breadcrumb">
+            <li class="active">
+                <strong>Committee Details</strong>
+            </li>
+        </ol>
     </div>
-
-
 </div>
+
+<br>
+<button class="btn btn-primary btn-circle btn-lg" id="create_committee_button" type="button" data-toggle="modal" data-target="#myModal">
+    <i class="fa fa-plus-circle" aria-hidden="true"></i>
+</button>
+
+        <div class="wrapper wrapper-content animated fadeInRight">
+            <div class="row" id="committee_row">
+@foreach (var item in Model)
+{
+                <div class="col-lg-4">
+                       
+                            <div class="ibox">
+                                <div class="ibox-title">
+                                    <span class="label label-primary pull-right">NEW</span>
+                                    <h5>@Html.DisplayFor(modelItem => item.Committee_Name)</h5>
+                                </div>
+                                <div class="ibox-content">
+                                    <div class="team-members">
+                                        @foreach (var it in item.committee_Memberlist)
+                                        {
+
+                                        
+                                        <a href="#"><img alt="member" class="img-circle" src="~/Images/a9.jpg"></a>
+                                       @* @Html.DisplayFor(modelItem => it)*@
+                                        }
+                                    </div>
+                                    <h4>Info regarding committee</h4>
+                                    <p>
+                                        Commitee Info: @Html.DisplayFor(modelItem => item.Committee_Startdate)
+
+                                    </p>
+                                    <div>
+                                        <span>Status of current committee:</span>
+                                        ACTIVE
+                                    </div>
+                                    <div class="row  m-t-sm">
+                                        <div class="col-sm-4">
+                                            <div class="font-bold">MEMBERS</div>
+                                        @Html.DisplayFor(modelItem => item.numberofpeople)
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="font-bold">PLACEHOLDER</div>
+                                            PLACEHOLDER
+                                        </div>
+                                        <div class="col-sm-4 text-right">
+                                            <div class="font-bold">BUDGET</div>
+                                            $913 <i class="fa fa-level-up text-navy"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                      
+                    </div>
+
+
+
+                }
+
+
+
+
+            </div>
+        </div>
+
+  
 

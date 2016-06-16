@@ -29,6 +29,9 @@
     <EntitySetMapping Name="Inboxes">
       <EntityTypeMapping TypeName="cdashModel1.Inbox">
         <MappingFragment StoreEntitySet="Inbox">
+          <ScalarProperty Name="Read" ColumnName="Read" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="subject" ColumnName="subject" />
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Recipient" ColumnName="Recipient" />
           <ScalarProperty Name="Sender" ColumnName="Sender" />
@@ -72,6 +75,82 @@
           <ScalarProperty Name="Poster" ColumnName="Poster" />
           <ScalarProperty Name="Post_date" ColumnName="Post_date" />
           <ScalarProperty Name="agendaID" ColumnName="agendaID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="agenda_Mainnotes">
+      <EntityTypeMapping TypeName="cdashModel1.agenda_Mainnotes">
+        <MappingFragment StoreEntitySet="agenda_Mainnotes">
+          <ScalarProperty Name="Post" ColumnName="Post" />
+          <ScalarProperty Name="committee_name" ColumnName="committee_name" />
+          <ScalarProperty Name="Poster" ColumnName="Poster" />
+          <ScalarProperty Name="Post_date" ColumnName="Post_date" />
+          <ScalarProperty Name="agendaMainID" ColumnName="agendaMainID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="courses">
+      <EntityTypeMapping TypeName="cdashModel1.cours">
+        <MappingFragment StoreEntitySet="courses">
+          <ScalarProperty Name="instructor" ColumnName="instructor" />
+          <ScalarProperty Name="CourseNum" ColumnName="CourseNum" />
+          <ScalarProperty Name="CourseName" ColumnName="CourseName" />
+          <ScalarProperty Name="courseID" ColumnName="courseID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="courseslists">
+      <EntityTypeMapping TypeName="cdashModel1.courseslist">
+        <MappingFragment StoreEntitySet="courseslist">
+          <ScalarProperty Name="courseNumber" ColumnName="courseNumber" />
+          <ScalarProperty Name="courseName" ColumnName="courseName" />
+          <ScalarProperty Name="courseID" ColumnName="courseID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="courses_memberlist">
+      <EntityTypeMapping TypeName="cdashModel1.courses_memberlist">
+        <MappingFragment StoreEntitySet="courses_memberlist">
+          <ScalarProperty Name="active" ColumnName="active" />
+          <ScalarProperty Name="end_date" ColumnName="end_date" />
+          <ScalarProperty Name="add_date" ColumnName="add_date" />
+          <ScalarProperty Name="instructor" ColumnName="instructor" />
+          <ScalarProperty Name="CourseNum" ColumnName="CourseNum" />
+          <ScalarProperty Name="CourseName" ColumnName="CourseName" />
+          <ScalarProperty Name="courseID" ColumnName="courseID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="coursepreqs">
+      <EntityTypeMapping TypeName="cdashModel1.coursepreq">
+        <MappingFragment StoreEntitySet="coursepreq">
+          <ScalarProperty Name="course_case" ColumnName="course_case" />
+          <ScalarProperty Name="course_group" ColumnName="course_group" />
+          <ScalarProperty Name="course_preqforid" ColumnName="course_preqforid" />
+          <ScalarProperty Name="course_preqforNumb" ColumnName="course_preqforNumb" />
+          <ScalarProperty Name="course_preqforName" ColumnName="course_preqforName" />
+          <ScalarProperty Name="courseNumber" ColumnName="courseNumber" />
+          <ScalarProperty Name="courseName" ColumnName="courseName" />
+          <ScalarProperty Name="courseID" ColumnName="courseID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="publications_details">
+      <EntityTypeMapping TypeName="cdashModel1.publications_details">
+        <MappingFragment StoreEntitySet="publications_details">
+          <ScalarProperty Name="nonref_journalarticles" ColumnName="nonref_journalarticles" />
+          <ScalarProperty Name="other_pub" ColumnName="other_pub" />
+          <ScalarProperty Name="textbooks" ColumnName="textbooks" />
+          <ScalarProperty Name="published_reviews" ColumnName="published_reviews" />
+          <ScalarProperty Name="chaptors_inbooks" ColumnName="chaptors_inbooks" />
+          <ScalarProperty Name="edited_books" ColumnName="edited_books" />
+          <ScalarProperty Name="Academic_books_monographs" ColumnName="Academic_books_monographs" />
+          <ScalarProperty Name="ref_conf_proceedings" ColumnName="ref_conf_proceedings" />
+          <ScalarProperty Name="acc_journalarticles" ColumnName="acc_journalarticles" />
+          <ScalarProperty Name="ref_journals" ColumnName="ref_journals" />
+          <ScalarProperty Name="academic_year" ColumnName="academic_year" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="pub_id" ColumnName="pub_id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

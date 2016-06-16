@@ -31,5 +31,11 @@ namespace Inspinia_MVC5.Models
         public virtual DbSet<meeting> meetings { get; set; }
         public virtual DbSet<user> users { get; set; }
         public virtual DbSet<agendanote> agendanotes { get; set; }
+        public virtual DbSet<agenda_Mainnotes> agenda_Mainnotes { get; set; }
+        public virtual DbSet<cours> courses { get; set; }
+        public virtual DbSet<courseslist> courseslists { get; set; }
+        public virtual DbSet<courses_memberlist> courses_memberlist { get; set; }
+        public virtual DbSet<coursepreq> coursepreqs { get; set; }
+        public virtual DbSet<publications_details> publications_details { get; set; }
     }
 }

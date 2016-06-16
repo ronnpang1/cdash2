@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="cdashModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Committee">
+    <Key>
+      <PropertyRef Name="Committee_ID" />
+    </Key>
+    <Property Name="Committee_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Committee_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Committee_Startdate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Committee_Enddate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Committee_Active" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Committee_Faculty" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="numberofpeople" Type="Int32" />
+  </EntityType>
+  <EntityType Name="committee_Memberlist">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name_ofCommittee" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Uname_ofMember" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="member_joindate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="memeber_endate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="active" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Inbox">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Recipient" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Sender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Senddate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="attachments" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="meeting">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="committee_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Message_Agenda" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="creation_date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="end_date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="active" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="agendanotes" Relationship="cdashModel1.FK_agendanotes_meetings" FromRole="meeting" ToRole="agendanote" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="userID" />
+    </Key>
+    <Property Name="userID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FIRSTName" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="LASTName" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="cdashEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Committees" EntityType="Self.Committee" />
+    <EntitySet Name="committee_Memberlist" EntityType="Self.committee_Memberlist" />
+    <EntitySet Name="Inboxes" EntityType="Self.Inbox" />
+    <EntitySet Name="meetings" EntityType="Self.meeting" />
+    <EntitySet Name="users" EntityType="Self.user" />
+    <EntitySet Name="agendanotes" EntityType="cdashModel1.agendanote" />
+    <AssociationSet Name="FK_agendanotes_meetings" Association="cdashModel1.FK_agendanotes_meetings">
+      <End Role="meeting" EntitySet="meetings" />
+      <End Role="agendanote" EntitySet="agendanotes" />
+    </AssociationSet>
+    <EntitySet Name="agenda_Mainnotes" EntityType="cdashModel1.agenda_Mainnotes" />
+    <EntitySet Name="courses" EntityType="cdashModel1.cours" />
+    <EntitySet Name="courseslists" EntityType="cdashModel1.courseslist" />
+  </EntityContainer>
+  <EntityType Name="agendanote">
+    <Key>
+      <PropertyRef Name="agendaID" />
+    </Key>
+    <Property Name="agendaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Post_date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Poster" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="committee_name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="creation_dateOfCommittee" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Post" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="meetingId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="meeting" Relationship="cdashModel1.FK_agendanotes_meetings" FromRole="agendanote" ToRole="meeting" />
+  </EntityType>
+  <Association Name="FK_agendanotes_meetings">
+    <End Type="cdashModel1.meeting" Role="meeting" Multiplicity="1" />
+    <End Type="cdashModel1.agendanote" Role="agendanote" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="meeting">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="agendanote">
+        <PropertyRef Name="meetingId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="agenda_Mainnotes">
+    <Key>
+      <PropertyRef Name="agendaMainID" />
+    </Key>
+    <Property Name="agendaMainID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Post_date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Poster" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="committee_name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Post" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="cours">
+    <Key>
+      <PropertyRef Name="courseID" />
+    </Key>
+    <Property Name="courseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CourseName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CourseNum" Type="Int32" Nullable="false" />
+    <Property Name="instructor" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="courseslist">
+    <Key>
+      <PropertyRef Name="courseID" />
+    </Key>
+    <Property Name="courseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="courseName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="courseNumber" Type="Int32" Nullable="false" />
+  </EntityType>
+</Schema>

@@ -42,6 +42,7 @@ C:\Users\HENG\Downloads\CDASH-master\CDASH-master\Inspinia_MVC5\bin\Antlr3.Runti
 C:\Users\HENG\Downloads\CDASH-master\CDASH-master\Inspinia_MVC5\bin\EntityFramework.dll
 C:\Users\HENG\Downloads\CDASH-master\CDASH-master\Inspinia_MVC5\bin\EntityFramework.SqlServer.dll
 C:\Users\HENG\Downloads\CDASH-master\CDASH-master\Inspinia_MVC5\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\HENG\Downloads\CDASH-master\CDASH-master\Inspinia_MVC5\bin\MvcCheckBoxList.dll
 C:\Users\HENG\Downloads\CDASH-master\CDASH-master\Inspinia_MVC5\bin\Newtonsoft.Json.dll
 C:\Users\HENG\Downloads\CDASH-master\CDASH-master\Inspinia_MVC5\bin\System.Web.Helpers.dll
 C:\Users\HENG\Downloads\CDASH-master\CDASH-master\Inspinia_MVC5\bin\System.Web.Mvc.dll

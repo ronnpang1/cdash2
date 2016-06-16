@@ -1,0 +1,60 @@
+﻿@model  Inspinia_MVC5.Models.ViewModel.loadcourseprofessors
+@section Styles {
+    @Styles.Render("~/Content/plugins/iCheck/iCheckStyles")
+    @Styles.Render("~/Content/css")
+
+}
+@section Scripts {
+    @Scripts.Render("~/plugins/iCheck")
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('.i-checks').iCheck({
+                checkboxClass: 'icheckbox_square-green',
+                radioClass: 'iradio_square-green',
+            });
+
+        });
+    </script>
+}
+    @if (Model.Assigned == true)
+    {
+
+                    <div class="radio i-checks">
+                        <label>
+                            @Html.RadioButton(Model.email, true,Model.Assigned == true) Assigned
+                        </label>
+                    </div>
+
+
+                    <div class="radio i-checks">
+                        <label>
+                            @Html.RadioButton(Model.email, false) Unassigned
+                        </label>
+
+                    </div>
+    }
+
+    else
+    {
+
+
+        <div class="radio i-checks">
+            <label>
+                @Html.RadioButton(Model.email, true, new { id = Model.email}) Assigned
+            </label>
+        </div>
+
+
+                    <div class="radio i-checks">
+                        <label>
+                            @Html.RadioButton(Model.email, false, Model.Assigned == false) Unassigned
+                        </label>
+
+                    </div>
+
+
+
+
+    }
+            

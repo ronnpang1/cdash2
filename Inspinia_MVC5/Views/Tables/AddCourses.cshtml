@@ -1,0 +1,80 @@
+﻿@model Inspinia_MVC5.Models.ViewModel.courseAdd_Viewmodel
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>addcourses courseAdd_Viewmodel</h5>
+                </div>
+                <div class="ibox-content">
+
+				@using (Html.BeginForm("CourseAddMethod","Tables")) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.coursenameprereq_for, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.coursenameprereq_for)
+                @Html.ValidationMessageFor(model => model.coursenameprereq_for)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.coursenumprereq_for, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.coursenumprereq_for)
+                @Html.ValidationMessageFor(model => model.coursenumprereq_for)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.courseidpreqfor, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.courseidpreqfor)
+                @Html.ValidationMessageFor(model => model.courseidpreqfor)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.coursegroup, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.coursegroup)
+                @Html.ValidationMessageFor(model => model.coursegroup)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.course_case, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.course_case)
+                @Html.ValidationMessageFor(model => model.course_case)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-primary" />
+				@Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-white"})
+            </div>
+        </div>
+    </div>
+}
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+ 
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

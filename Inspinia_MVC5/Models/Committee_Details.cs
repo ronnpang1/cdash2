@@ -8,7 +8,7 @@ namespace Inspinia_MVC5.Models
     public partial class Committee_Details
     {
 
-        public string Committee_Name { get; set; }
+        public string  Committee_Name{ get; set; }
         public System.DateTime Committee_Startdate { get; set; }
         public System.DateTime Committee_Enddate { get; set; }
         public string Committee_Active { get; set; }

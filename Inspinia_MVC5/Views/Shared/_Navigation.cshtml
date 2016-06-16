@@ -1,4 +1,29 @@
-﻿<nav class="navbar-default navbar-static-side" role="navigation">
+﻿<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script type="text/javascript">
+    
+    $.ajax(
+{
+    type: "POST", //HTTP POST Method
+    url: "@Url.Action("getuserdetails","Services")", // Controller/View
+    type: "post",
+    cache: false,
+    error: function (response) {
+        alert(response.responseText);
+    },
+    success: function (response, createdata) {
+        obj = jQuery.parseJSON(response);
+        console.log(obj);
+
+        $('#user').text(obj.FirstName + " " + obj.LastName);
+        $('#role').text(obj.Role);
+
+    }
+});
+
+</script>
+
+
+<nav class="navbar-default navbar-static-side" role="navigation">
     <div class="sidebar-collapse">
         <ul class="nav" id="side-menu">
             <li class="nav-header">
@@ -9,8 +34,8 @@
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                         <span class="clear">
                             <span class="block m-t-xs">
-                                <strong class="font-bold">David Williams</strong>
-                            </span> <span class="text-muted text-xs block">Art Director <b class="caret"></b></span>
+                                <strong class="font-bold" id="user">David Williams</strong>
+                            </span> <span class="text-muted text-xs block" id="role">Art Director <b class="caret"></b></span>
                         </span>
                     </a>
                     <ul class="dropdown-menu animated fadeInRight m-t-xs">
@@ -25,9 +50,9 @@
                     IN+
                 </div>
             </li>
-            
-            
-           
+
+
+
             <li class="@Html.IsSelected(controller: "Mailbox")">
                 <a href="#"><i class="fa fa-envelope"></i> <span class="nav-label" data-i18n="nav.mailbox">Mailbox </span><span class="label label-warning pull-right">16/24</span></a>
                 <ul class="nav nav-second-level collapse @Html.IsSelected(controller: "Mailbox", cssClass: "in")">
@@ -40,69 +65,61 @@
 
             <li class="@Html.IsSelected(controller: "UIElements")">
 
-                <a href="#"><i class="fa fa-flask"></i> 
-                <span class="nav-label" data-i18n="nav.uielements">Committee</span><span class="fa arrow">
+                <a href="#">
+                    <i class="fa fa-flask"></i>
+                    <span class="nav-label" data-i18n="nav.uielements">Committee</span><span class="fa arrow">
                     </span>
                 </a>
 
 
-        <ul class="nav nav-second-level collapse @Html.IsSelected(controller:"Notification",cssClass:"in")">
-
-            <li class="@Html.IsSelected(action: "NotificationsTooltips")">
-                <a href="@Url.Action("TeamsBoard", "AppViews")">Create Committees</a>
-                </li>
-
-
-<li class="@Html.IsSelected(action: "NotificationsTooltips")">
-                <a href="@Url.Action("NotificationsTooltips", "UIElements")">Committees<span class="fa arrow"></span></a>
-            <li class="@Html.IsSelected(action: "NotificationsTooltips")">
                 <ul class="nav nav-second-level collapse @Html.IsSelected(controller:"Notification",cssClass:"in")">
+
                     <li class="@Html.IsSelected(action: "NotificationsTooltips")">
-                        <a href="@Url.Action("NotificationsTooltips", "UIElements")">Committee 1<span class="fa arrow"></span></a>
+                        <a href="@Url.Action("TeamsBoard", "AppViews")">Create Committees</a>
+                    </li>
 
+
+                    <li class="@Html.IsSelected(action: "NotificationsTooltips")">
+                        <a href="@Url.Action("ManageCommittees", "UIElements")">Manage Committees</a>
+                    </li>
+                    <li class="@Html.IsSelected(action: "NotificationsTooltips")">
+                        <a href="@Url.Action("NotificationsTooltips", "UIElements")">Meetings<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse @Html.IsSelected(controller:"Notification",cssClass:"in")">
-
-                            <li class="@Html.IsSelected(action: "NotificationsTooltips")">
-                                <a href="@Url.Action("Clients", "AppViews")">Add members</a>
-                            </li>
-                            <li class="@Html.IsSelected(action: "NotificationsTooltips")">
-                                <a href="@Url.Action("NotificationsTooltips", "UIElements")">Agenda</a>
-                            </li>
+                            <li class="@Html.IsSelected(action: "NotificationsTooltips")"><a href="@Url.Action("Addmeetings", "UIElements")">Add Meetings</a>
+                            <li class="@Html.IsSelected(action: "NotificationsTooltips")"><a href="@Url.Action("ManageMeetings", "UIElements")">Manage Meetings</a>
 
 
                         </ul>
 
+                </ul>
 
-                        <li class="@Html.IsSelected(action: "NotificationsTooltips")"><a href="@Url.Action("NotificationsTooltips", "UIElements")">Meetings<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level collapse @Html.IsSelected(controller:"Notification",cssClass:"in")">
-                                <li class="@Html.IsSelected(action: "NotificationsTooltips")"><a href="@Url.Action("Addmeetings", "UIElements")">Add Meetings</a>
-                                   <li class="@Html.IsSelected(action: "NotificationsTooltips")"><a href="@Url.Action("ManageMeetings", "UIElements")">Manage Meetings</a>
-
-
-</ul>
 
 
             </li>
+
+
+
+
+            <li class="@Html.IsSelected(action: "NotificationsTooltips")">
+                <a href="@Url.Action("StaticTables", "Tables")"><i class="fa fa-envelope"></i>Courses<span class="fa arrow"> </span></a>
+                <ul class="nav nav-second-level collapse @Html.IsSelected(controller:"Notification",cssClass:"in")">
+                    <li class="@Html.IsSelected(action: "NotificationsTooltips")"><a href="@Url.Action("AddCourses", "Tables")">Add Courses</a>
+                    <li class="@Html.IsSelected(action: "NotificationsTooltips")"><a href="@Url.Action("ManageCourses", "Tables")">Manage Courses</a>
+
+
                 </ul>
             </li>
 
+            <li class="@Html.IsSelected(action: "NotificationsTooltips")">
+                <a href="@Url.Action("ManageCommittees", "UIElements")"><i class="fa fa-envelope"></i>Workload<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse @Html.IsSelected(controller:"Notification",cssClass:"in")">
+                    <li class="@Html.IsSelected(action: "NotificationsTooltips")"><a href="@Url.Action("Index", "Workload")">Assess</a>
+                    <li class="@Html.IsSelected(action: "NotificationsTooltips")"><a href="@Url.Action("ManageMeetings", "UIElements")">Report</a>
+                    <li class="@Html.IsSelected(action: "NotificationsTooltips")"><a href="@Url.Action("assignworkload", "Workload")">Assign</a>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                </ul>
         </ul>
+       
     </div>
 </nav>

@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Inspinia_MVC5.Models.coursepreqclass>
+
+@{
+    int counter1 = 0;
+}
+
+
+@foreach (var item in Model)
+{
+    if (counter1 == 0)
+    {
+
+            <div class="widget navy-bg p-lg text-center">
+                <div class="m-b-md">
+                    <i class="fa fa-shield fa-4x"></i>
+                    <h1 class="m-xs"><p> EITHER </p></h1>
+                    <h3 class="font-bold no-margins">
+                        @Html.DisplayFor(modelItem => item.CourseName)
+                        @Html.DisplayFor(modelItem => item.CourseNumber)
+                    </h3>
+                    <small>Previously</small>
+                </div>
+            </div>
+    }
+    else {
+
+            <div class="widget navy-bg p-lg text-center">
+                <div class="m-b-md">
+                    <i class="fa fa-shield fa-4x"></i>
+                    <h1 class="m-xs">OR</h1>
+                    <h3 class="font-bold no-margins">
+                        @Html.DisplayFor(modelItem => item.CourseName)
+                        @Html.DisplayFor(modelItem => item.CourseNumber)
+                    </h3>
+                    <small>Previously</small>
+                </div>
+            </div>
+
+    }
+    counter1++;
+
+
+
+
+}
+
+
+
+
+
+

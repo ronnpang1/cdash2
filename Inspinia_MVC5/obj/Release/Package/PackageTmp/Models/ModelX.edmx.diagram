@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f4c6a78343ae4fcab88cc940b1bd854e" Name="Diagram1">
+        <EntityTypeShape EntityType="cdashModel1.agenda_notes" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="cdashModel1.Committee" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="cdashModel1.committee_Memberlist" Width="1.5" PointX="0.875" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="cdashModel1.Inbox" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="cdashModel1.meeting" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="cdashModel1.user" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="cdashModel1.agendanote" Width="1.5" PointX="7" PointY="4.75" />
+        <AssociationConnector Association="cdashModel1.FK_agendanotes_meetings" />
+        <EntityTypeShape EntityType="cdashModel1.agenda_Mainnotes" Width="1.75" PointX="0.75" PointY="6.75" />
+        <EntityTypeShape EntityType="cdashModel1.cours" Width="1.75" PointX="2.75" PointY="6.75" />
+        <EntityTypeShape EntityType="cdashModel1.courseslist" Width="1.75" PointX="7.75" PointY="0.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

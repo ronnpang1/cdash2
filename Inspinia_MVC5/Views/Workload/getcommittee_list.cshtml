@@ -1,0 +1,28 @@
+﻿@model IEnumerable<Inspinia_MVC5.Models.ViewModel.retrievecommlist>
+
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Committeename)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Committeename)
+        </td>
+        <td>
+			
+        </td>
+    </tr>
+}
+
+</table>
+
+
+
+

@@ -20,5 +20,8 @@ namespace Inspinia_MVC5.Models
         public System.DateTime Senddate { get; set; }
         public string Message { get; set; }
         public byte[] attachments { get; set; }
+        public string subject { get; set; }
+        public string type { get; set; }
+        public string Read { get; set; }
     }
 }

@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewBag.Title = "listpreqs";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles {
+    @Styles.Render("~/Content/plugins/iCheck/iCheckStyles")
+}
+@section Scripts {
+    @Scripts.Render("~/plugins/iCheck")
+    @Scripts.Render("~/plugins/flot")
+    @Scripts.Render("~/plugins/vectorMap")
+}
+
+        @if (@ViewBag.empty == "false")
+        {
+             <div class="wrapper wrapper-content animated fadeInRight ecommerce">
+              <div class="ibox-content m-b-sm border-bottom" style="height:50%">
+              <div class="row-lg-2">
+                @Html.Action("getorcoursepreqs", "Tables")
+            </div>
+            <div class="row-lg-2">
+                @Html.Action("getcoursepreqs", "Tables")
+            </div>
+            <div class="row-lg-2">
+               @Html.Action("getprevorconcpreqs", "Tables")
+            </div>
+        </div>
+    </div>
+
+        }
+
+        else
+
+        {
+            <div class="widget lazur-bg p-lg text-center">
+                <div class="m-b-md">
+                    <i class="fa fa-shield fa-4x"></i>
+                    <h1 class="m-xs">No Prerequisites</h1>
+                   
+
+                </div>
+            </div>
+
+
+        }
+

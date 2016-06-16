@@ -12,6 +12,8 @@ namespace Inspinia_MVC5.Controllers
     public class AppViewsController : Controller
     {
 
+        public static string commName = " ";
+
         public ActionResult Contacts()
         {
             return View();
@@ -21,6 +23,7 @@ namespace Inspinia_MVC5.Controllers
         {
             return View();
         }
+
 
         public ActionResult Contacts2()
         {
@@ -92,6 +95,14 @@ namespace Inspinia_MVC5.Controllers
             return View();
         }
 
+        public ActionResult profile()
+        {
+
+
+            return View();
+
+        }
+
         public ActionResult TeamsBoard()
         {
             HttpCookie authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
@@ -112,9 +123,9 @@ namespace Inspinia_MVC5.Controllers
                              Committee_Startdate = mem.member_joindate,
                              Committee_Enddate = mem.memeber_endate,
                              Committee_Active = "yes",
-                              numberofpeople =(int) (from com in _db.Committees where
+                              numberofpeople = (from com in _db.Committees where
                                                mem.name_ofCommittee == com.Committee_Name
-                                               select com.numberofpeople).FirstOrDefault(),
+                                               select com.numberofpeople).FirstOrDefault() ?? 0,
                              committee_Memberlist = (from com in _db.Committees
                                                      join com_members in _db.committee_Memberlist on
                                                       mem.name_ofCommittee equals com_members.name_ofCommittee
@@ -145,11 +156,25 @@ namespace Inspinia_MVC5.Controllers
             return View();
         }
 
-        public ActionResult Clients()
+        public ActionResult Clients(String committeeName)
         {
+           var commName2 = Request.QueryString["committeeName"].ToString();
+           System.Diagnostics.Debug.WriteLine(commName2 + "from2");
+
+            commName =commName2;
             return View();
         }
+        public ActionResult addmembertocommittee(String username)
+        {
+            //var committeeName = Request.QueryString["committeeName"].ToString();
 
+            System.Diagnostics.Debug.WriteLine(commName + "from3");
+            add_MemberstoCommittee addm = new add_MemberstoCommittee();
+            addm.add(commName, username);
+
+            return RedirectToAction("TeamsBoard", "AppViews");
+
+        }
         public ActionResult OutlookView()
         {
             return View();

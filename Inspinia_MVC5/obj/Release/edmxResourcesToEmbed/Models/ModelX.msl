@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="cdashModel1StoreContainer" CdmEntityContainer="cdashEntities1">
+    <EntitySetMapping Name="Committees">
+      <EntityTypeMapping TypeName="cdashModel1.Committee">
+        <MappingFragment StoreEntitySet="Committee">
+          <ScalarProperty Name="numberofpeople" ColumnName="numberofpeople" />
+          <ScalarProperty Name="Committee_ID" ColumnName="Committee_ID" />
+          <ScalarProperty Name="Committee_Name" ColumnName="Committee_Name" />
+          <ScalarProperty Name="Committee_Startdate" ColumnName="Committee_Startdate" />
+          <ScalarProperty Name="Committee_Enddate" ColumnName="Committee_Enddate" />
+          <ScalarProperty Name="Committee_Active" ColumnName="Committee_Active" />
+          <ScalarProperty Name="Committee_Faculty" ColumnName="Committee_Faculty" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="committee_Memberlist">
+      <EntityTypeMapping TypeName="cdashModel1.committee_Memberlist">
+        <MappingFragment StoreEntitySet="committee_Memberlist">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="name_ofCommittee" ColumnName="name_ofCommittee" />
+          <ScalarProperty Name="Uname_ofMember" ColumnName="Uname_ofMember" />
+          <ScalarProperty Name="member_joindate" ColumnName="member_joindate" />
+          <ScalarProperty Name="memeber_endate" ColumnName="memeber_endate" />
+          <ScalarProperty Name="active" ColumnName="active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Inboxes">
+      <EntityTypeMapping TypeName="cdashModel1.Inbox">
+        <MappingFragment StoreEntitySet="Inbox">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Recipient" ColumnName="Recipient" />
+          <ScalarProperty Name="Sender" ColumnName="Sender" />
+          <ScalarProperty Name="Senddate" ColumnName="Senddate" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="attachments" ColumnName="attachments" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="meetings">
+      <EntityTypeMapping TypeName="cdashModel1.meeting">
+        <MappingFragment StoreEntitySet="meetings">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="committee_name" ColumnName="committee_name" />
+          <ScalarProperty Name="Message_Agenda" ColumnName="Message_Agenda" />
+          <ScalarProperty Name="creation_date" ColumnName="creation_date" />
+          <ScalarProperty Name="end_date" ColumnName="end_date" />
+          <ScalarProperty Name="active" ColumnName="active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="users">
+      <EntityTypeMapping TypeName="cdashModel1.user">
+        <MappingFragment StoreEntitySet="users">
+          <ScalarProperty Name="userID" ColumnName="userID" />
+          <ScalarProperty Name="FIRSTName" ColumnName="FIRSTName" />
+          <ScalarProperty Name="LASTName" ColumnName="LASTName" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="role" ColumnName="role" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="agendanotes">
+      <EntityTypeMapping TypeName="cdashModel1.agendanote">
+        <MappingFragment StoreEntitySet="agendanotes">
+          <ScalarProperty Name="meetingId" ColumnName="meetingId" />
+          <ScalarProperty Name="Post" ColumnName="Post" />
+          <ScalarProperty Name="creation_dateOfCommittee" ColumnName="creation_dateOfCommittee" />
+          <ScalarProperty Name="committee_name" ColumnName="committee_name" />
+          <ScalarProperty Name="Poster" ColumnName="Poster" />
+          <ScalarProperty Name="Post_date" ColumnName="Post_date" />
+          <ScalarProperty Name="agendaID" ColumnName="agendaID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="agenda_Mainnotes">
+      <EntityTypeMapping TypeName="cdashModel1.agenda_Mainnotes">
+        <MappingFragment StoreEntitySet="agenda_Mainnotes">
+          <ScalarProperty Name="Post" ColumnName="Post" />
+          <ScalarProperty Name="committee_name" ColumnName="committee_name" />
+          <ScalarProperty Name="Poster" ColumnName="Poster" />
+          <ScalarProperty Name="Post_date" ColumnName="Post_date" />
+          <ScalarProperty Name="agendaMainID" ColumnName="agendaMainID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="courses">
+      <EntityTypeMapping TypeName="cdashModel1.cours">
+        <MappingFragment StoreEntitySet="courses">
+          <ScalarProperty Name="instructor" ColumnName="instructor" />
+          <ScalarProperty Name="CourseNum" ColumnName="CourseNum" />
+          <ScalarProperty Name="CourseName" ColumnName="CourseName" />
+          <ScalarProperty Name="courseID" ColumnName="courseID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="courseslists">
+      <EntityTypeMapping TypeName="cdashModel1.courseslist">
+        <MappingFragment StoreEntitySet="courseslist">
+          <ScalarProperty Name="courseNumber" ColumnName="courseNumber" />
+          <ScalarProperty Name="courseName" ColumnName="courseName" />
+          <ScalarProperty Name="courseID" ColumnName="courseID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

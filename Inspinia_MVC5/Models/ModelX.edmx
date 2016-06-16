@@ -5,13 +5,23 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="cdashModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="agenda_Mainnotes">
+          <Key>
+            <PropertyRef Name="agendaMainID" />
+          </Key>
+          <Property Name="agendaMainID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Post_date" Type="date" Nullable="false" />
+          <Property Name="Poster" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="committee_name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Post" Type="text" />
+        </EntityType>
         <EntityType Name="agendanotes">
           <Key>
             <PropertyRef Name="agendaID" />
           </Key>
           <Property Name="agendaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Post_date" Type="date" Nullable="false" />
-          <Property Name="Poster" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Poster" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="committee_name" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="creation_dateOfCommittee" Type="date" Nullable="false" />
           <Property Name="Post" Type="text" />
@@ -35,20 +45,65 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="name_ofCommittee" Type="varchar" MaxLength="255" Nullable="false" />
-          <Property Name="Uname_ofMember" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Uname_ofMember" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="member_joindate" Type="date" Nullable="false" />
           <Property Name="memeber_endate" Type="date" Nullable="false" />
           <Property Name="active" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="coursepreq">
+          <Key>
+            <PropertyRef Name="courseID" />
+          </Key>
+          <Property Name="courseID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="courseName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="courseNumber" Type="int" Nullable="false" />
+          <Property Name="course_preqforName" Type="varchar" MaxLength="255" />
+          <Property Name="course_preqforNumb" Type="int" />
+          <Property Name="course_preqforid" Type="int" />
+          <Property Name="course_group" Type="int" />
+          <Property Name="course_case" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="courses">
+          <Key>
+            <PropertyRef Name="courseID" />
+          </Key>
+          <Property Name="courseID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CourseName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CourseNum" Type="int" Nullable="false" />
+          <Property Name="instructor" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="courses_memberlist">
+          <Key>
+            <PropertyRef Name="courseID" />
+          </Key>
+          <Property Name="courseID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CourseName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="CourseNum" Type="int" Nullable="false" />
+          <Property Name="instructor" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="add_date" Type="date" Nullable="false" />
+          <Property Name="end_date" Type="date" Nullable="false" />
+          <Property Name="active" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="courseslist">
+          <Key>
+            <PropertyRef Name="courseID" />
+          </Key>
+          <Property Name="courseID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="courseName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="courseNumber" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Inbox">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Recipient" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Sender" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Recipient" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Sender" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="Senddate" Type="date" Nullable="false" />
           <Property Name="Message" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="subject" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="type" Type="varchar" MaxLength="255" />
+          <Property Name="Read" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="attachments" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="meetings">
@@ -62,17 +117,41 @@
           <Property Name="end_date" Type="date" Nullable="false" />
           <Property Name="active" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="publications_details">
+          <Key>
+            <PropertyRef Name="pub_id" />
+          </Key>
+          <Property Name="pub_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="academic_year" Type="int" Nullable="false" />
+          <Property Name="ref_journals" Type="int" />
+          <Property Name="acc_journalarticles" Type="int" />
+          <Property Name="ref_conf_proceedings" Type="int" />
+          <Property Name="Academic_books_monographs" Type="int" />
+          <Property Name="edited_books" Type="int" />
+          <Property Name="chaptors_inbooks" Type="int" />
+          <Property Name="published_reviews" Type="int" />
+          <Property Name="textbooks" Type="int" />
+          <Property Name="other_pub" Type="int" />
+          <Property Name="nonref_journalarticles" Type="int" />
+        </EntityType>
         <EntityType Name="users">
           <Key>
             <PropertyRef Name="userID" />
           </Key>
           <Property Name="userID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="FIRSTName" Type="varchar" MaxLength="25" Nullable="false" />
-          <Property Name="LASTName" Type="varchar" MaxLength="35" Nullable="false" />
-          <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FIRSTName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="LASTName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="password" Type="varchar" MaxLength="255" />
           <Property Name="role" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'FK_agendaMainnotes_Committeename' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK_agendaMainnotes_Committeename" />-->
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'FK_agendaMainnotes_users' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK_agendaMainnotes_users" />-->
         <!--Errors Found During Generation:
 warning 6035: The relationship 'FK_agendanotes_Committeename' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
         <Association Name="FK_agendanotes_Committeename" />-->
@@ -101,21 +180,55 @@ warning 6035: The relationship 'FK_committeeMember_users' has columns that are n
 warning 6035: The relationship 'FK_committeename_committee' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
         <Association Name="FK_committeename_committee" />-->
         <!--Errors Found During Generation:
+warning 6035: The relationship 'FK_courselist_users' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK_courselist_users" />-->
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'FK_courses_users' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK_courses_users" />-->
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'FK_coursesmemberlist_courseslist' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK_coursesmemberlist_courseslist" />-->
+        <Association Name="fk_dbo_coursepreq_list">
+          <End Role="courseslist" Type="Self.courseslist" Multiplicity="0..1" />
+          <End Role="coursepreq" Type="Self.coursepreq" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="courseslist">
+              <PropertyRef Name="courseID" />
+            </Principal>
+            <Dependent Role="coursepreq">
+              <PropertyRef Name="course_preqforid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'FK_pubdetails_user' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK_pubdetails_user" />-->
+        <!--Errors Found During Generation:
 warning 6035: The relationship 'FK_RECIPIENT_EMAIL' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
         <Association Name="FK_RECIPIENT_EMAIL" />-->
         <!--Errors Found During Generation:
 warning 6035: The relationship 'FK_SENDER_EMAIL' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
         <Association Name="FK_SENDER_EMAIL" />-->
         <EntityContainer Name="cdashModel1StoreContainer">
+          <EntitySet Name="agenda_Mainnotes" EntityType="Self.agenda_Mainnotes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="agendanotes" EntityType="Self.agendanotes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Committee" EntityType="Self.Committee" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="committee_Memberlist" EntityType="Self.committee_Memberlist" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="coursepreq" EntityType="Self.coursepreq" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="courses" EntityType="Self.courses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="courses_memberlist" EntityType="Self.courses_memberlist" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="courseslist" EntityType="Self.courseslist" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Inbox" EntityType="Self.Inbox" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="meetings" EntityType="Self.meetings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="publications_details" EntityType="Self.publications_details" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_agendanotes_meetings" Association="Self.FK_agendanotes_meetings">
             <End Role="meetings" EntitySet="meetings" />
             <End Role="agendanotes" EntitySet="agendanotes" />
+          </AssociationSet>
+          <AssociationSet Name="fk_dbo_coursepreq_list" Association="Self.fk_dbo_coursepreq_list">
+            <End Role="courseslist" EntitySet="courseslist" />
+            <End Role="coursepreq" EntitySet="coursepreq" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -141,7 +254,7 @@ warning 6035: The relationship 'FK_SENDER_EMAIL' has columns that are not part o
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="name_ofCommittee" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Uname_ofMember" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Uname_ofMember" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="member_joindate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="memeber_endate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="active" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
@@ -151,11 +264,14 @@ warning 6035: The relationship 'FK_SENDER_EMAIL' has columns that are not part o
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Recipient" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Sender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Recipient" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Sender" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Senddate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="attachments" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="subject" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="type" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Read" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="meeting">
           <Key>
@@ -174,9 +290,9 @@ warning 6035: The relationship 'FK_SENDER_EMAIL' has columns that are not part o
             <PropertyRef Name="userID" />
           </Key>
           <Property Name="userID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FIRSTName" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="LASTName" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FIRSTName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LASTName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
@@ -191,6 +307,16 @@ warning 6035: The relationship 'FK_SENDER_EMAIL' has columns that are not part o
             <End Role="meeting" EntitySet="meetings" />
             <End Role="agendanote" EntitySet="agendanotes" />
           </AssociationSet>
+          <EntitySet Name="agenda_Mainnotes" EntityType="cdashModel1.agenda_Mainnotes" />
+          <EntitySet Name="courses" EntityType="cdashModel1.cours" />
+          <EntitySet Name="courseslists" EntityType="cdashModel1.courseslist" />
+          <EntitySet Name="courses_memberlist" EntityType="cdashModel1.courses_memberlist" />
+          <EntitySet Name="coursepreqs" EntityType="cdashModel1.coursepreq" />
+          <AssociationSet Name="fk_dbo_coursepreq_list" Association="cdashModel1.fk_dbo_coursepreq_list">
+            <End Role="courseslist" EntitySet="courseslists" />
+            <End Role="coursepreq" EntitySet="coursepreqs" />
+          </AssociationSet>
+          <EntitySet Name="publications_details" EntityType="cdashModel1.publications_details" />
         </EntityContainer>
         <EntityType Name="agendanote">
           <Key>
@@ -198,7 +324,7 @@ warning 6035: The relationship 'FK_SENDER_EMAIL' has columns that are not part o
           </Key>
           <Property Name="agendaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Post_date" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Poster" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Poster" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="committee_name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="creation_dateOfCommittee" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Post" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
@@ -217,6 +343,90 @@ warning 6035: The relationship 'FK_SENDER_EMAIL' has columns that are not part o
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="agenda_Mainnotes">
+          <Key>
+            <PropertyRef Name="agendaMainID" />
+          </Key>
+          <Property Name="agendaMainID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Post_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Poster" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="committee_name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Post" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="cours">
+          <Key>
+            <PropertyRef Name="courseID" />
+          </Key>
+          <Property Name="courseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CourseName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CourseNum" Type="Int32" Nullable="false" />
+          <Property Name="instructor" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="courseslist">
+          <Key>
+            <PropertyRef Name="courseID" />
+          </Key>
+          <Property Name="courseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="courseName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="courseNumber" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="coursepreqs" Relationship="cdashModel1.fk_dbo_coursepreq_list" FromRole="courseslist" ToRole="coursepreq" />
+        </EntityType>
+        <EntityType Name="courses_memberlist">
+          <Key>
+            <PropertyRef Name="courseID" />
+          </Key>
+          <Property Name="courseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CourseName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CourseNum" Type="Int32" Nullable="false" />
+          <Property Name="instructor" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="add_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="end_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="active" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="coursepreq">
+          <Key>
+            <PropertyRef Name="courseID" />
+          </Key>
+          <Property Name="courseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="courseName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="courseNumber" Type="Int32" Nullable="false" />
+          <Property Name="course_preqforName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="course_preqforNumb" Type="Int32" />
+          <Property Name="course_preqforid" Type="Int32" />
+          <Property Name="course_group" Type="Int32" />
+          <Property Name="course_case" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="courseslist" Relationship="cdashModel1.fk_dbo_coursepreq_list" FromRole="coursepreq" ToRole="courseslist" />
+        </EntityType>
+        <Association Name="fk_dbo_coursepreq_list">
+          <End Type="cdashModel1.courseslist" Role="courseslist" Multiplicity="0..1" />
+          <End Type="cdashModel1.coursepreq" Role="coursepreq" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="courseslist">
+              <PropertyRef Name="courseID" />
+            </Principal>
+            <Dependent Role="coursepreq">
+              <PropertyRef Name="course_preqforid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="publications_details">
+          <Key>
+            <PropertyRef Name="pub_id" />
+          </Key>
+          <Property Name="pub_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="academic_year" Type="Int32" Nullable="false" />
+          <Property Name="ref_journals" Type="Int32" />
+          <Property Name="acc_journalarticles" Type="Int32" />
+          <Property Name="ref_conf_proceedings" Type="Int32" />
+          <Property Name="Academic_books_monographs" Type="Int32" />
+          <Property Name="edited_books" Type="Int32" />
+          <Property Name="chaptors_inbooks" Type="Int32" />
+          <Property Name="published_reviews" Type="Int32" />
+          <Property Name="textbooks" Type="Int32" />
+          <Property Name="other_pub" Type="Int32" />
+          <Property Name="nonref_journalarticles" Type="Int32" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -251,6 +461,9 @@ warning 6035: The relationship 'FK_SENDER_EMAIL' has columns that are not part o
           <EntitySetMapping Name="Inboxes">
             <EntityTypeMapping TypeName="cdashModel1.Inbox">
               <MappingFragment StoreEntitySet="Inbox">
+                <ScalarProperty Name="Read" ColumnName="Read" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="subject" ColumnName="subject" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Recipient" ColumnName="Recipient" />
                 <ScalarProperty Name="Sender" ColumnName="Sender" />
@@ -294,6 +507,82 @@ warning 6035: The relationship 'FK_SENDER_EMAIL' has columns that are not part o
                 <ScalarProperty Name="Poster" ColumnName="Poster" />
                 <ScalarProperty Name="Post_date" ColumnName="Post_date" />
                 <ScalarProperty Name="agendaID" ColumnName="agendaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="agenda_Mainnotes">
+            <EntityTypeMapping TypeName="cdashModel1.agenda_Mainnotes">
+              <MappingFragment StoreEntitySet="agenda_Mainnotes">
+                <ScalarProperty Name="Post" ColumnName="Post" />
+                <ScalarProperty Name="committee_name" ColumnName="committee_name" />
+                <ScalarProperty Name="Poster" ColumnName="Poster" />
+                <ScalarProperty Name="Post_date" ColumnName="Post_date" />
+                <ScalarProperty Name="agendaMainID" ColumnName="agendaMainID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="courses">
+            <EntityTypeMapping TypeName="cdashModel1.cours">
+              <MappingFragment StoreEntitySet="courses">
+                <ScalarProperty Name="instructor" ColumnName="instructor" />
+                <ScalarProperty Name="CourseNum" ColumnName="CourseNum" />
+                <ScalarProperty Name="CourseName" ColumnName="CourseName" />
+                <ScalarProperty Name="courseID" ColumnName="courseID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="courseslists">
+            <EntityTypeMapping TypeName="cdashModel1.courseslist">
+              <MappingFragment StoreEntitySet="courseslist">
+                <ScalarProperty Name="courseNumber" ColumnName="courseNumber" />
+                <ScalarProperty Name="courseName" ColumnName="courseName" />
+                <ScalarProperty Name="courseID" ColumnName="courseID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="courses_memberlist">
+            <EntityTypeMapping TypeName="cdashModel1.courses_memberlist">
+              <MappingFragment StoreEntitySet="courses_memberlist">
+                <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="end_date" ColumnName="end_date" />
+                <ScalarProperty Name="add_date" ColumnName="add_date" />
+                <ScalarProperty Name="instructor" ColumnName="instructor" />
+                <ScalarProperty Name="CourseNum" ColumnName="CourseNum" />
+                <ScalarProperty Name="CourseName" ColumnName="CourseName" />
+                <ScalarProperty Name="courseID" ColumnName="courseID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="coursepreqs">
+            <EntityTypeMapping TypeName="cdashModel1.coursepreq">
+              <MappingFragment StoreEntitySet="coursepreq">
+                <ScalarProperty Name="course_case" ColumnName="course_case" />
+                <ScalarProperty Name="course_group" ColumnName="course_group" />
+                <ScalarProperty Name="course_preqforid" ColumnName="course_preqforid" />
+                <ScalarProperty Name="course_preqforNumb" ColumnName="course_preqforNumb" />
+                <ScalarProperty Name="course_preqforName" ColumnName="course_preqforName" />
+                <ScalarProperty Name="courseNumber" ColumnName="courseNumber" />
+                <ScalarProperty Name="courseName" ColumnName="courseName" />
+                <ScalarProperty Name="courseID" ColumnName="courseID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="publications_details">
+            <EntityTypeMapping TypeName="cdashModel1.publications_details">
+              <MappingFragment StoreEntitySet="publications_details">
+                <ScalarProperty Name="nonref_journalarticles" ColumnName="nonref_journalarticles" />
+                <ScalarProperty Name="other_pub" ColumnName="other_pub" />
+                <ScalarProperty Name="textbooks" ColumnName="textbooks" />
+                <ScalarProperty Name="published_reviews" ColumnName="published_reviews" />
+                <ScalarProperty Name="chaptors_inbooks" ColumnName="chaptors_inbooks" />
+                <ScalarProperty Name="edited_books" ColumnName="edited_books" />
+                <ScalarProperty Name="Academic_books_monographs" ColumnName="Academic_books_monographs" />
+                <ScalarProperty Name="ref_conf_proceedings" ColumnName="ref_conf_proceedings" />
+                <ScalarProperty Name="acc_journalarticles" ColumnName="acc_journalarticles" />
+                <ScalarProperty Name="ref_journals" ColumnName="ref_journals" />
+                <ScalarProperty Name="academic_year" ColumnName="academic_year" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="pub_id" ColumnName="pub_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

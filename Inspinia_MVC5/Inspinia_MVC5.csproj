@@ -57,9 +57,13 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Newtonsoft.Json.6.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="MvcCheckBoxList, Version=1.4.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvcCheckBoxList.1.4.5\lib\net45\MvcCheckBoxList.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -135,6 +139,7 @@
     <Folder Include="Models\DBfolder\" />
     <Folder Include="Models\DB\" />
     <Folder Include="Models\EntityManager\" />
+    <Folder Include="Views\Services\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -156,14 +161,19 @@
     <Compile Include="Controllers\MiscellaneousController.cs" />
     <Compile Include="Controllers\PagesController.cs" />
     <Compile Include="Controllers\ScaffoldingController.cs" />
+    <Compile Include="Controllers\ServicesController.cs" />
     <Compile Include="Controllers\TablesController.cs" />
     <Compile Include="Controllers\UIElementsController.cs" />
     <Compile Include="Controllers\WidgetsController.cs" />
+    <Compile Include="Controllers\WorkloadController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\HMTLHelperExtensions.cs" />
     <Compile Include="Models\agendanote.cs">
+      <DependentUpon>ModelX.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\agenda_Mainnotes.cs">
       <DependentUpon>ModelX.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Blog.cs" />
@@ -173,6 +183,19 @@
     </Compile>
     <Compile Include="Models\Committee_Details.cs" />
     <Compile Include="Models\committee_Memberlist.cs">
+      <DependentUpon>ModelX.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\cours.cs">
+      <DependentUpon>ModelX.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\coursepreq.cs">
+      <DependentUpon>ModelX.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\coursepreqclass.cs" />
+    <Compile Include="Models\courseslist.cs">
+      <DependentUpon>ModelX.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\courses_memberlist.cs">
       <DependentUpon>ModelX.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Inbox.cs">
@@ -197,6 +220,9 @@
       <DependentUpon>ModelX.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Post.cs" />
+    <Compile Include="Models\publications_details.cs">
+      <DependentUpon>ModelX.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ScaffoldingContext.cs" />
     <Compile Include="Models\ScaffoldingController.cs" />
     <Compile Include="Models\SYSUser.cs" />
@@ -222,12 +248,38 @@
     <Compile Include="Models\ViewModel\addAgendaViewModel.cs" />
     <Compile Include="Models\ViewModel\addMeetingViewModel.cs" />
     <Compile Include="Models\ViewModel\agendaviewmodel.cs" />
+    <Compile Include="Models\ViewModel\assigned.cs" />
+    <Compile Include="Models\ViewModel\Assignlist_Viewmodel.cs" />
+    <Compile Include="Models\ViewModel\barstatsviewmodel.cs" />
+    <Compile Include="Models\ViewModel\committeedetailviewmodel.cs" />
+    <Compile Include="Models\ViewModel\CommitteeListViewmodel.cs" />
+    <Compile Include="Models\ViewModel\committeeprofs.cs" />
+    <Compile Include="Models\ViewModel\courseAdd_Viewmodel.cs" />
+    <Compile Include="Models\ViewModel\coursepreqsviewmodel.cs" />
+    <Compile Include="Models\ViewModel\EmailViewModel.cs" />
+    <Compile Include="Models\ViewModel\getcourseslist.cs" />
+    <Compile Include="Models\ViewModel\inboxlist_viewmodel.cs" />
+    <Compile Include="Models\ViewModel\loadcourseprofessors.cs" />
+    <Compile Include="Models\ViewModel\Loadprofessors.cs" />
+    <Compile Include="Models\ViewModel\options.cs" />
+    <Compile Include="Models\ViewModel\PersonViewModel.cs" />
+    <Compile Include="Models\ViewModel\retrievecommlist.cs" />
+    <Compile Include="Models\ViewModel\UserViewmodel.cs" />
+    <Compile Include="Models\ViewModel\ViewAgendaMessageModel.cs" />
+    <Compile Include="Models\ViewModel\viewcourses.cs" />
     <Compile Include="Models\ViewModel\viewmeeting.cs" />
+    <Compile Include="Models\ViewModel\workloadviewmodel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\addcourses.cs" />
     <Compile Include="Services\add_MemberstoCommittee.cs" />
     <Compile Include="Services\AgendaNotes.cs" />
     <Compile Include="Services\CreateCommittee.cs" />
     <Compile Include="Services\CreateMeeting.cs" />
+    <Compile Include="Services\DataPull_Interface.cs" />
+    <Compile Include="Services\getpreq.cs" />
+    <Compile Include="Services\modifyprofessorcourse.cs" />
+    <Compile Include="Services\pullstats.cs" />
+    <Compile Include="Services\pull_pubdetails.cs" />
     <Compile Include="Services\usercred.cs" />
     <Compile Include="Services\Userservices.cs" />
   </ItemGroup>
@@ -407,6 +459,7 @@
     <Content Include="Content\plugins\slick\fonts\slick.ttf" />
     <Content Include="Content\plugins\slick\fonts\slick.woff" />
     <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Images\a9.jpg" />
     <Content Include="locales\en.json" />
     <Content Include="locales\es.json" />
     <Content Include="Inspinia_MVC5.wpp.targets">
@@ -1890,6 +1943,32 @@
     <Content Include="Views\UIElements\ManageMeetings.cshtml" />
     <Content Include="Views\UIElements\AgendaAccess.cshtml" />
     <Content Include="Views\UIElements\submitnotes.cshtml" />
+    <Content Include="Views\UIElements\viewAgenda.cshtml" />
+    <Content Include="Views\Shared\_Empty_Page.cshtml" />
+    <Content Include="Views\Tables\AddCourses.cshtml" />
+    <Content Include="Views\Tables\ManageCourses.cshtml" />
+    <Content Include="Views\Tables\Orders.cshtml" />
+    <Content Include="Views\UIElements\Loadproffessors.cshtml" />
+    <Content Include="Views\UIElements\ManageCommittees.cshtml" />
+    <Content Include="Views\UIElements\ManageCom.cshtml" />
+    <Content Include="Views\UIElements\ProjectDetail.cshtml" />
+    <Content Include="Views\UIElements\ComDetails.cshtml" />
+    <Content Include="Views\UIElements\LoadCommitteeproffessors.cshtml" />
+    <Content Include="Views\UIElements\loadcourseprofessors.cshtml" />
+    <Content Include="Views\Tables\loadcourseprofessors.cshtml" />
+    <Content Include="Views\UIElements\Com_profile.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\checkboxes.cshtml" />
+    <Content Include="Views\UIElements\listcom_Members.cshtml" />
+    <Content Include="Views\Tables\addpreqcourses.cshtml" />
+    <Content Include="Views\Tables\getprevorconcpreqs.cshtml" />
+    <Content Include="Views\Tables\getorcoursepreqs.cshtml" />
+    <Content Include="Views\Tables\getcoursepreqs.cshtml" />
+    <Content Include="Views\Tables\listpreqs.cshtml" />
+    <Content Include="Views\Workload\Index.cshtml" />
+    <Content Include="Views\Workload\Details.cshtml" />
+    <Content Include="Views\Workload\Getstats.cshtml" />
+    <Content Include="Views\Workload\getcommittee_list.cshtml" />
+    <Content Include="Views\Workload\assignworkload.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

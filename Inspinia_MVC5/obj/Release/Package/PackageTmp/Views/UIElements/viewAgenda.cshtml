@@ -1,0 +1,21 @@
+﻿@model IEnumerable<Inspinia_MVC5.Models.ViewModel.ViewAgendaMessageModel>
+
+
+<div class="ibox-content" id="secretary-box">
+
+
+    @foreach (var it in Model)
+    {
+        @Html.DisplayFor(modelItem => it.Post_date)
+
+        <div class="alert alert-warning alert-dismissable">
+            <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+            @Html.DisplayFor(modelItem => it.Message_Agenda)
+
+        </div>
+    }
+    <p> Random Text</p>
+</div>
+
+
+

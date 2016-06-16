@@ -13,6 +13,13 @@
         <EntityTypeShape EntityType="cdashModel1.user" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="cdashModel1.agendanote" Width="1.5" PointX="7" PointY="4.75" />
         <AssociationConnector Association="cdashModel1.FK_agendanotes_meetings" />
+        <EntityTypeShape EntityType="cdashModel1.agenda_Mainnotes" Width="1.75" PointX="0.75" PointY="6.75" />
+        <EntityTypeShape EntityType="cdashModel1.cours" Width="1.75" PointX="2.75" PointY="6.75" />
+        <EntityTypeShape EntityType="cdashModel1.courseslist" Width="1.75" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="cdashModel1.courses_memberlist" Width="1.5" PointX="5.375" PointY="7.75" />
+        <EntityTypeShape EntityType="cdashModel1.coursepreq" Width="1.5" PointX="10.25" PointY="4.75" />
+        <AssociationConnector Association="cdashModel1.fk_dbo_coursepreq_list" />
+        <EntityTypeShape EntityType="cdashModel1.publications_details" Width="1.5" PointX="7.375" PointY="7.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
